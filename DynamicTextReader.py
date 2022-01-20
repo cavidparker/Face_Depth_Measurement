@@ -1,6 +1,7 @@
 import cv2
 import cvzone
 from cvzone.FaceMeshModule import FaceMeshDetector
+import numpy as np
 
 cap = cv2.VideoCapture(0)
 detector = FaceMeshDetector(maxFaces=2)
@@ -8,6 +9,7 @@ detector = FaceMeshDetector(maxFaces=2)
 
 while True:
     success, img = cap.read()
+    imgText = np.zeros_like(img)
     img, faces = detector.findFaceMesh(img)
     # img, faces = detector.findFaceMesh(img, draw=False)
 
@@ -26,28 +28,14 @@ while True:
         # print(w)
         W = 6.3
 
-        # # Finding the focal length of the camera
-        # W = 6.3  # cm for male person in front of camera
-        # d = 50
-        # f = (w*d)/W
-        # if f > 600:
-        #     print("lost")
-        # else:
-        #     print("good")
-        # print(f)
-
         ### Finding the distance ###
         f = 840
         d = (W*f)/w
-        if d < 90:
-            print("Go Backward")
-        else:
-            print("Perfect position")
         print(d)
 
         cvzone.putTextRect(img, f'Depth: {int(d)}cm',
                            (face[10][0] - 100, face[10][1] - 50),
                            scale=2)
-
-    cv2.imshow("Image", img)
+    imgStacked = cvzone.stackImages([img, imgText], 2, 1)
+    cv2.imshow("Image", imgStacked)
     cv2.waitKey(1)
