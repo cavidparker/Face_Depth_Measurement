@@ -6,3 +6,5 @@
 ![Screenshot](test2.png)
 ### Perfect Distacne Measurement:
 ![Screenshot](test3.png)
+### Face distance :
+![Screenshot](canonical_face_model_uv_visualization.png)
