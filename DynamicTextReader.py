@@ -7,7 +7,7 @@ cap = cv2.VideoCapture(0)
 detector = FaceMeshDetector(maxFaces=2)
 
 
-textList = ["wecome to the face depth measurement system",
+textList = ["welcome to face depth measurement",
             "recharge the battery", "press the button to start", "press the button to stop", "easy to use", "dynamic text change"]
 
 
@@ -43,8 +43,9 @@ while True:
 
         for i, text in enumerate(textList):
             singleHeight = 50
+            scale = 0.4 + d/100
             cv2.putText(imgText, text, (50, 50+(i*singleHeight)),
-                        cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+                        cv2.FONT_HERSHEY_SIMPLEX, scale, (0, 0, 255), 2)
 
     imgStacked = cvzone.stackImages([img, imgText], 2, 1)
     cv2.imshow("Image", imgStacked)
