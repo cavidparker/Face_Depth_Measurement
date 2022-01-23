@@ -41,8 +41,12 @@ while True:
         d = (W*f)/w
         if d < 90:
             print("Go Backward")
+            cvzone.putTextRect(img, f'Go Backward',
+                               (face[10][0] - 100, face[10][1] - 100), scale=2)
         else:
             print("Perfect position")
+            cvzone.putTextRect(img, f'   Perfect   ',
+                               (face[10][0] - 100, face[10][1] - 100), scale=2)
         print(d)
 
         cvzone.putTextRect(img, f'Depth: {int(d)}cm',
@@ -50,4 +54,5 @@ while True:
                            scale=2)
 
     cv2.imshow("Image", img)
-    cv2.waitKey(1)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
