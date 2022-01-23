@@ -8,3 +8,5 @@
 ![Screenshot](test3.png)
 ### Face distance :
 ![Screenshot](canonical_face_model_uv_visualization.png)
+### Dynamic Text Reader :
+![Screenshot](test4.png)
